@@ -5,7 +5,7 @@ HybridMix_GlobalLocal - Long family, decoder-only byte-level language model, sta
 ## Status
 
 - Verification level: **Benchmarked**
-- Failure class: none
+- Failure class: Note: exact recall and memory update up to 8192 (short and long runs); state tracking 0.66-0.69 at all lengths after short training, 0.40-0.50 at 2048-8192 after long training
 
 ## Provenance
 
