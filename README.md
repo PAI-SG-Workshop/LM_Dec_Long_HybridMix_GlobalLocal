@@ -4,8 +4,8 @@ HybridMix_GlobalLocal - Long family, decoder-only byte-level language model, sta
 
 ## Status
 
-- Verification level: **Runnable**
-- Failure class: Implementation Unverified: overfit check not passed
+- Verification level: **Benchmarked**
+- Failure class: none
 
 ## Provenance
 
@@ -22,8 +22,15 @@ All models share one protocol: 256-byte vocabulary, dim 512, 6 layers, 8 heads x
 
 - Parameters: 20.74 M
 - Causality check: pass (largest change of earlier outputs 0.0e+00)
+- Overfit check (4 x 256 bytes): 5.710 -> 0.001 nats, pass
+- LM-02 enwik8 (200M tokens): valid 1.402 / test 1.389 bits per byte
+- LM-02 enwik8 (1B tokens): valid 1.325 / test 1.322 bits per byte
 - Peak GPU memory at length 2048 (batch 1): train 642 MB, inference 250 MB
 - Peak GPU memory at length 8192 (batch 1): train 6063 MB, inference 2969 MB
+- LM-05 recall `lm05v3`: 4 pairs @ 512: 1.00 (keys removed 0.22); 4 pairs @ 2048: 1.00 (keys removed 0.17); 16 pairs @ 512: 1.00 (keys removed 0.04); 16 pairs @ 2048: 1.00 (keys removed 0.03)
+- LM-05 recall `lm05v3long`: 4 pairs @ 512: 1.00 (keys removed 0.08); 4 pairs @ 2048: 1.00 (keys removed 0.06); 4 pairs @ 8192: 1.00 (keys removed 0.04); 16 pairs @ 512: 1.00 (keys removed 0.04); 16 pairs @ 2048: 1.00 (keys removed 0.03); 16 pairs @ 8192: 1.00 (keys removed 0.02)
+- LM-06 memory update `lm06`: @512: latest 1.00, unchanged 1.00, stale 0.00; @2048: latest 1.00, unchanged 1.00, stale 0.00
+- LM-06 memory update `lm06long`: @512: latest 1.00, unchanged 1.00, stale 0.00; @2048: latest 1.00, unchanged 1.00, stale 0.00; @8192: latest 1.00, unchanged 1.00, stale 0.00
 
 ## Tests
 

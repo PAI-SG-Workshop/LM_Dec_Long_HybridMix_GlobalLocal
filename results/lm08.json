@@ -1,0 +1,50 @@
+{
+ "model": "hyb_mix_r",
+ "repo": "(new) hybrid: GRU + local and global attention",
+ "target_repo": "LM_Dec_Long_HybridMix_GlobalLocal",
+ "category": "Long",
+ "upstream": "lucidrains/x-transformers (MIT), pip 2.31.7 + torch.nn",
+ "unified": [
+  "GRU layer, 3 global NoPE layers, then 3 sliding-window (256) RoPE layers (order ablation)"
+ ],
+ "torch": "2.5.1+cu124",
+ "gpu": "NVIDIA GeForce RTX 3070 Ti",
+ "stage": "lm08",
+ "started": "2026-11-12 13:31:13",
+ "smoke": false,
+ "steps": 6000,
+ "capped": false,
+ "bf16": true,
+ "final_bits": 3.282333951171229,
+ "test": {
+  "512": {
+   "bits_full": 3.257910866904852
+  },
+  "2048": {
+   "bits_full": 3.231011576431353,
+   "bits_last512": 3.2337405541395814,
+   "gain_from_history": 0.0027289777082284417
+  },
+  "8192": {
+   "bits_full": 3.249328674652822,
+   "bits_last512": 3.2537000436811274,
+   "gain_from_history": 0.004371369028305594
+  }
+ },
+ "config": {
+  "train_len": 512,
+  "test_lens": [
+   512,
+   2048,
+   8192
+  ],
+  "batch": 16,
+  "steps": 6000,
+  "eval_every": 1000,
+  "eval_samples": 64,
+  "tail": 256,
+  "max_hours": 1.5
+ },
+ "minutes": 9.5,
+ "seconds": 570.3
+}
